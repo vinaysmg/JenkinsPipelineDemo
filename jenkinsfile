@@ -1,10 +1,10 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
                 echo 'This is from Build'
+                git branch: 'main', credentialsId: 'MyGitHub', url: 'https://github.com/vinaysmg/cucumberBDD_ASBS'
             }
         }
                 stage('Deploy') {
@@ -15,6 +15,7 @@ pipeline {
                 stage('Test') {
             steps {
                 echo 'This is from Test'
+                bat 'mvn test'
             }
         }
                 stage('Release') {
